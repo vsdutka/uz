@@ -45,7 +45,8 @@ func Unzip(src string, dest string) ([]string, error) {
 		// Store filename/path for returning and using later on
 		fname := f.Name
 		if f.NonUTF8 {
-			dec := charmap.Windows1251.NewDecoder()
+			fmt.Println([]byte(fname))
+			dec := charmap.CodePage866.NewDecoder()
 			// Разные кодировки = разные длины символов.
 			newFName := make([]byte, len(fname)*2)
 			n, _, err := dec.Transform(newFName, []byte(fname), false)
